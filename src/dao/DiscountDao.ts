@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { IProductDocument, Product } from '../models/product';
+import { Discount, IProductDocument, Product } from '../models/product';
 
 export class DiscountDao {
     private model: Model<IProductDocument>
@@ -39,6 +39,10 @@ export class DiscountDao {
                 throw new Error('Discount is required');
             }
 
+            if (!this.isDiscountValid(discount)) {
+                throw new Error('Invalid discount value');
+            }
+
             const product = await this.model.findOneAndUpdate(
                 { _id: productId, },
                 { discount, updatedAt: new Date(), },
@@ -62,5 +66,9 @@ export class DiscountDao {
             console.error(error);
             throw error;
         }
+    }
+
+    private isDiscountValid(discount: string): discount is Discount {
+        return discount in Discount;
     }
 }

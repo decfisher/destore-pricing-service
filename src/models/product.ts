@@ -21,6 +21,12 @@ export interface Product {
 
 export interface IProductDocument extends IProduct, Document {}
 
+export enum Discount {
+    BOGOF = 'BOGOF',
+    THREE_FOR_TWO = '3FOR2',
+    FREE_DELIVERY = 'FREE_DELIVERY',
+}
+
 const productSchema = new Schema<IProductDocument>(
     {
         name: { 
