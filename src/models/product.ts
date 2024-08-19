@@ -22,8 +22,9 @@ export interface Product {
 export interface IProductDocument extends IProduct, Document {}
 
 export enum Discount {
+    NONE = 'NONE',
     BOGOF = 'BOGOF',
-    THREE_FOR_TWO = '3FOR2',
+    THREE_FOR_TWO = 'THREE_FOR_TWO',
     FREE_DELIVERY = 'FREE_DELIVERY',
 }
 
